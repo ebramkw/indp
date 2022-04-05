@@ -1,0 +1,47 @@
+*****************************************************************
+To run on a testbed: #define TESTBED 1
+To run on cooja: don't define TESTBED or COOJA
+
+*****************************************************************
+
+Number of different data rounds, will be repeated
+#define NUMBER_OF_ROUNDS 12
+
+To have empty rounds, to just sync with no data, define SYNC_ROUND 1
+#define SYNC_ROUND 1
+
+To control how many empty sync rounds between data rounds
+#define NUMBER_OF_SYNC_ROUNDS 2
+
+*****************************************************************
+
+Recursive Distributed edge PCA
+
+- No data - No SVD
+- Each node has its rounds data: PCA for all rounds & flag to update or not for each round
+
+Three versions:
+1- Send PCA every round:
+	- measure cost
+2- Send no update for early termination:
+	- measure cost & error in c
+3- Use NACK and disagree to it for early termination, a node will assume that another node has no update if the node didn't here from the other node:
+	- measure cost & error in c & if the assumption is right or not!
+
+
+
+*****************************************************************
+
+indriya server
+access to data from motes directly:
+	nc mac-mini-com1-b-el 40000
+find mac-mini and port:
+	cat ~/indriya_upgrade/nodes_virt_id_phy_id.json
+
+log file:
+	cat /var/log/indriya/indriya.log
+
+*****************************************************************
+
+NOTE
+***Increasing the packet size may cause the nodes not to sync!!!***

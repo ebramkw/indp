@@ -1,0 +1,46 @@
+Details
+
+Encode takes so many rtimer ticks:
+Min: 8
+Max: 60 = 1.84ms
+
+Decode takes so many rtimer ticks:
+Min: 8
+Max: 116 = 3.54ms
+
+Time to TX or RX a full size ZigBee packet (128 Bytes)
+4ms
+
+Chaos Slot length in rtimer ticks
+40422 = 1234ms
+
+Chaos Subslot length in rtimer ticks
+~5ms
+
+Max subslots allowed
+~200
+Thus a max of around 100 packets can be received
+We are receiving a max of around 50 packets
+We can thus support upto 40 nodes
+
+rtimer_clock_t = unsigned short = 2 bytes
+
+--------------------------------------------------------
+To Compute Time elapsed
+		// Decode and set my flags if I have solved
+		// rtimer_clock_t start_encode = RTIMER_NOW();
+		if(decode(received->bv, received->flags)) {
+			leds_on(LEDS_BLUE);	
+		}
+		// rtimer_clock_t stop_encode = RTIMER_NOW();
+		// if (RTIMER_CLOCK_LT(start_encode,stop_encode))
+		// {
+		// 	elapsed_temp = stop_encode - start_encode;
+		// 	if (elapsed_temp>elapsed_max)
+		// 		elapsed_max = elapsed_temp;
+		// 	if (elapsed_temp<elapsed_min)
+		// 		elapsed_min = elapsed_temp;
+		// }
+
+Random:
+x = (((rand()+32768) % 10)==0);		
